@@ -10,4 +10,5 @@ public interface Repository<T> {
 
     //Fetch
     void fetchItems();
+    void fetchItemsDone();
 }

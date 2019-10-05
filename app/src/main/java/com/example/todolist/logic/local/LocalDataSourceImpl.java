@@ -1,14 +1,25 @@
 package com.example.todolist.logic.local;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.todolist.logic.DataSource;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.model.Item;
 
+import java.util.List;
+
 public class LocalDataSourceImpl implements DataSource {
     Repository repository;
+    AppDatabase appDatabase;
 
+    public LocalDataSourceImpl() {
+        try {
+            appDatabase = AppDatabaseProvider.getINSTANCE();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void setRepository(Repository repository) {
@@ -20,15 +31,6 @@ public class LocalDataSourceImpl implements DataSource {
         //TODO SAVE
 
         try {
-            final AppDatabase appDatabase = AppDatabaseProvider.getINSTANCE();
-            // 첫번째 쓰레드
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    ItemDao itemDao = appDatabase.getItemDao();
-//                    itemDao.saveItem(item);
-//                }
-//            }).start();
 
             new AsyncTask<Void, Void, Void>(
 
@@ -52,6 +54,14 @@ public class LocalDataSourceImpl implements DataSource {
             e.printStackTrace();
         }
 
+    }
 
+    // Fetch Items
+    @Override
+    public void fetchItems() {
+        new Thread(() -> {
+            List<Item> items = appDatabase.getItemDao().fetchItems();
+            Log.d("Data", items.size() + "");
+        }).start();
     }
 }

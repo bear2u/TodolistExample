@@ -15,4 +15,9 @@ public class RemoteDataSourceImpl implements DataSource {
     public void save(Item item) {
 
     }
+
+    @Override
+    public void fetchItems() {
+
+    }
 }

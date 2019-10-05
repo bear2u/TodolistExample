@@ -35,7 +35,11 @@ public class RepositoryImpl<T> implements Repository {
 
     @Override
     public void fetchItems() {
-        ((MainContract.Presenter)presenter).fetchItemsDone();
+        localDataSource.fetchItems();
     }
 
+    @Override
+    public void fetchItemsDone() {
+        ((MainContract.Presenter)presenter).fetchItemsDone();
+    }
 }
