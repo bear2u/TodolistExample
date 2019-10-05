@@ -1,13 +1,13 @@
 package com.example.todolist.logic;
 
 import com.example.todolist.base.BasePresenter;
-import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.local.LocalDataSourceImpl;
 import com.example.todolist.logic.remote.RemoteDataSourceImpl;
 import com.example.todolist.main.MainContract;
-import com.example.todolist.main.MainPresenter;
 import com.example.todolist.model.Item;
 import com.example.todolist.write.WriteContract;
+
+import java.util.List;
 
 public class RepositoryImpl<T> implements Repository {
     BasePresenter<T> presenter;
@@ -39,7 +39,13 @@ public class RepositoryImpl<T> implements Repository {
     }
 
     @Override
-    public void fetchItemsDone() {
-        ((MainContract.Presenter)presenter).fetchItemsDone();
+    public void fetchItemsDone(List list) {
+        ((MainContract.Presenter)presenter).fetchItemsDone(list);
     }
+
+
+//    @Override
+//    public void fetchItemsDone(List<Item> items) {
+//        ((MainContract.Presenter)presenter).fetchItemsDone(items);
+//    }
 }

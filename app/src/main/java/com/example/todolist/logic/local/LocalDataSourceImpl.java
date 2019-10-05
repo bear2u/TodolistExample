@@ -62,6 +62,7 @@ public class LocalDataSourceImpl implements DataSource {
         new Thread(() -> {
             List<Item> items = appDatabase.getItemDao().fetchItems();
             Log.d("Data", items.size() + "");
+            repository.fetchItemsDone(items);
         }).start();
     }
 }

@@ -3,6 +3,9 @@ package com.example.todolist.main;
 import com.example.todolist.base.BasePresenterImpl;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.RepositoryImpl;
+import com.example.todolist.model.Item;
+
+import java.util.List;
 
 public class MainPresenter
         extends BasePresenterImpl<MainContract.View>
@@ -21,7 +24,7 @@ public class MainPresenter
     }
 
     @Override
-    public void fetchItemsDone() {
-        view.fetchItemsDone();
+    public void fetchItemsDone(List<Item> items) {
+        view.fetchItemsDone(items);
     }
 }

@@ -2,26 +2,35 @@ package com.example.todolist.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.R;
 import com.example.todolist.base.BaseActivity;
+import com.example.todolist.model.Item;
 import com.example.todolist.write.view.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import java.util.List;
 
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import butterknife.BindView;
 
 public class MainActivity
         extends BaseActivity<MainContract.View, MainContract.Presenter>
         implements MainContract.View
 {
     private static final String TAG = "MainActivity";
+
+    MainAdapter mainAdapter;
+
+    @BindView(R.id.mainRecylerView)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,17 @@ public class MainActivity
                 startActivity(intent);
             }
         });
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        mainAdapter = new MainAdapter();
+        recyclerView.setAdapter(mainAdapter);
     }
 
     @Override
@@ -54,9 +74,16 @@ public class MainActivity
     }
 
     @Override
-    public void fetchItemsDone() {
-        Log.d(TAG, "fetchItemsDone");
-        Toast.makeText(this, "fetch Items", Toast.LENGTH_SHORT).show();
+    public void fetchItemsDone(List<Item> items) {
+//        new Handler(Looper.getMainLooper())
+//                .post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(MainActivity.this, "fetch Items " + items.size(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        runOnUiThread(() -> Toast.makeText(MainActivity.this, "fetch Items " + items.size(), Toast.LENGTH_SHORT).show());
     }
 
     @Override
