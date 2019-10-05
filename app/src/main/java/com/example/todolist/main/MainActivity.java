@@ -1,11 +1,11 @@
-package com.example.todolist.ui;
+package com.example.todolist.main;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.todolist.R;
+import com.example.todolist.write.view.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
