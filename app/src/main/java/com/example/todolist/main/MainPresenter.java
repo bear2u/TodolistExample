@@ -1,6 +1,5 @@
 package com.example.todolist.main;
 
-import com.example.todolist.base.BasePresenter;
 import com.example.todolist.base.BasePresenterImpl;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.RepositoryImpl;
@@ -12,10 +11,17 @@ public class MainPresenter
 
     MainPresenter() {
         this.repository = new RepositoryImpl();
+        this.repository.setPresenter(this);
     }
 
     @Override
     public void fetchItems() {
-         view.fetchItemsFinished();
+        this.repository.fetchItems();
+
+    }
+
+    @Override
+    public void fetchItemsDone() {
+        view.fetchItemsDone();
     }
 }

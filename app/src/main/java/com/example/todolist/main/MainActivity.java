@@ -54,8 +54,8 @@ public class MainActivity
     }
 
     @Override
-    public void fetchItemsFinished() {
-        Log.d(TAG, "fetchItemsFinished");
+    public void fetchItemsDone() {
+        Log.d(TAG, "fetchItemsDone");
         Toast.makeText(this, "fetch Items", Toast.LENGTH_SHORT).show();
     }
 

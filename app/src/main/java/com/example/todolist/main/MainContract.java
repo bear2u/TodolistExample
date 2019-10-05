@@ -6,12 +6,13 @@ import com.example.todolist.base.BaseView;
 public class MainContract {
     public interface View
             extends BaseView {
-        void fetchItemsFinished();
+        void fetchItemsDone();
     }
 
     public interface Presenter
             extends BasePresenter<View> {
         //TODO fetch Items
         void fetchItems();
+        void fetchItemsDone();
     }
 }

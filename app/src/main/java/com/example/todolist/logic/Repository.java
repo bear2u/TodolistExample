@@ -7,4 +7,7 @@ public interface Repository<T> {
     void setPresenter(BasePresenter<T> presenter);
     void save(Item item);
     void saveDone();
+
+    //Fetch
+    void fetchItems();
 }

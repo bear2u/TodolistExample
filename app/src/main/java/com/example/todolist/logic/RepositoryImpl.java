@@ -4,6 +4,8 @@ import com.example.todolist.base.BasePresenter;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.local.LocalDataSourceImpl;
 import com.example.todolist.logic.remote.RemoteDataSourceImpl;
+import com.example.todolist.main.MainContract;
+import com.example.todolist.main.MainPresenter;
 import com.example.todolist.model.Item;
 import com.example.todolist.write.WriteContract;
 
@@ -30,4 +32,10 @@ public class RepositoryImpl<T> implements Repository {
     public void saveDone() {
         ((WriteContract.Presenter)presenter).saveDone();
     }
+
+    @Override
+    public void fetchItems() {
+        ((MainContract.Presenter)presenter).fetchItemsDone();
+    }
+
 }
