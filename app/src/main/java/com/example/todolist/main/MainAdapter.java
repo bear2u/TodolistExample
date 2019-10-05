@@ -1,5 +1,6 @@
 package com.example.todolist.main;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,20 @@ public class MainAdapter
         extends RecyclerView.Adapter<MainAdapter.MainAdapterViewHolder> {
 
     List<Item> list;
-    MainAdapter(List<Item> list) {
+    MainContract.Presenter presenter;
+    MainAdapter(List<Item> list, MainContract.Presenter presenter) {
         this.list = list;
+        this.presenter = presenter;
     }
 
     public static class MainAdapterViewHolder
             extends RecyclerView.ViewHolder {
+        View view;
         TextView title;
 
         public MainAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
+            view = itemView;
             title = itemView.findViewById(android.R.id.text1);
         }
     }
@@ -43,9 +48,13 @@ public class MainAdapter
 
     // 2번째 단계
     @Override
-    public void onBindViewHolder(@NonNull MainAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainAdapterViewHolder holder,
+                                 int position) {
         Item item = list.get(position);
         holder.title.setText(item.getTitle());
+        holder.view.setOnClickListener(v ->
+                presenter.showDetail(position)
+        );
     }
 
     @Override

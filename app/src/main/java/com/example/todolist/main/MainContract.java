@@ -10,6 +10,7 @@ public class MainContract {
     public interface View
             extends BaseView {
         void fetchItemsDone(List<Item> items);
+        void showDetail(int pos);
     }
 
     public interface Presenter
@@ -17,5 +18,6 @@ public class MainContract {
         //TODO fetch Items
         void fetchItems();
         void fetchItemsDone(List<Item> items);
+        void showDetail(int pos);
     }
 }

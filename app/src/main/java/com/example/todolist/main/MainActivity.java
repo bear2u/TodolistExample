@@ -66,7 +66,7 @@ public class MainActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        mainAdapter = new MainAdapter(items);
+        mainAdapter = new MainAdapter(items, mPresenter);
         recyclerView.setAdapter(mainAdapter);
     }
 
@@ -95,6 +95,11 @@ public class MainActivity
             this.items.addAll(items);
             this.mainAdapter.notifyDataSetChanged();
         });
+    }
+
+    @Override
+    public void showDetail(int pos) {
+        Toast.makeText(this, items.get(pos).getContent(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

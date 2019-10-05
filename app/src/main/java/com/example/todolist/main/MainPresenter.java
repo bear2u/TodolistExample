@@ -27,4 +27,9 @@ public class MainPresenter
     public void fetchItemsDone(List<Item> items) {
         view.fetchItemsDone(items);
     }
+
+    @Override
+    public void showDetail(int pos) {
+        view.showDetail(pos);
+    }
 }
