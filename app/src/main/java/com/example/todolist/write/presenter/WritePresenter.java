@@ -1,6 +1,5 @@
 package com.example.todolist.write.presenter;
 
-import com.example.todolist.base.BasePresenter;
 import com.example.todolist.base.BasePresenterImpl;
 import com.example.todolist.model.Item;
 import com.example.todolist.write.WriteContract;
