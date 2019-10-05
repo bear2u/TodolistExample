@@ -1,5 +1,6 @@
 package com.example.todolist.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,7 +11,9 @@ public class Item {
     String title;
     String content;
     String regDate;
-    Boolean isDone;
+
+    @ColumnInfo(name = "done", defaultValue = "0")
+    Boolean isDone = false;
 
     public int getNo() {
         return no;

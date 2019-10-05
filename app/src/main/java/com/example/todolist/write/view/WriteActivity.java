@@ -44,7 +44,7 @@ public class WriteActivity
                 Item item = new Item();
                 item.setTitle(getEtString(etTitle));
                 item.setContent(getEtString(etContent));
-
+                item.setDone(true);
                 // TODO save item
                 mPresenter.save(item);
             }
@@ -58,5 +58,6 @@ public class WriteActivity
     @Override
     public void saveDone() {
         Toast.makeText(this, "Save Done", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
