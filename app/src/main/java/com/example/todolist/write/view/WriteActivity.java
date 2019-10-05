@@ -7,26 +7,32 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.todolist.R;
+import com.example.todolist.base.BaseActivity;
 import com.example.todolist.write.WriteContract;
 import com.example.todolist.write.WritePresenter;
 
-public class WriteActivity extends AppCompatActivity
+public class WriteActivity extends BaseActivity<WriteContract.View, WriteContract.Presenter>
         implements WriteContract.View {
 
-    WriteContract.Presenter presenter;
+
+//    WriteContract.Presenter presenter;
+
+    public WriteContract.Presenter setPresenter() {
+        return new WritePresenter();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        presenter = new WritePresenter();
-        presenter.setView(this);
+//        presenter = new WritePresenter();
+//        presenter.setView(this);
 
         findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.save(null);
+                mPresenter.save(null);
             }
         });
     }
@@ -38,7 +44,7 @@ public class WriteActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        presenter.removeView();
+        mPresenter.removeView();
         super.onDestroy();
     }
 }
