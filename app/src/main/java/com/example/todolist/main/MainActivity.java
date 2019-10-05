@@ -2,11 +2,13 @@ package com.example.todolist.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +37,8 @@ public class MainActivity
 
     List<Item> items;
 
+    private static int _REUQEST_ADD_DATA = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +52,7 @@ public class MainActivity
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,
                         WriteActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, _REUQEST_ADD_DATA);
             }
         });
 
@@ -113,5 +117,17 @@ public class MainActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "requestCode: " + requestCode + ", resultcode: " + resultCode);
+
+        if(requestCode == _REUQEST_ADD_DATA) {
+            if(resultCode == RESULT_OK) {
+                mPresenter.fetchItems();
+            }
+        }
     }
 }
