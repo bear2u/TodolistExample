@@ -1,11 +1,18 @@
 package com.example.todolist.base;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends AppCompatActivity {
+import butterknife.ButterKnife;
+
+public abstract class BaseActivity
+        <V extends BaseView, P extends BasePresenter<V>>
+                extends AppCompatActivity {
+
     protected P mPresenter;
     protected abstract P setPresenter();
 
@@ -14,6 +21,12 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         super.onCreate(savedInstanceState);
         mPresenter = setPresenter();
         mPresenter.setView((V) this);
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
     }
 
     @Override

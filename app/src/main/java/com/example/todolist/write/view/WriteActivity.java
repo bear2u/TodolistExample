@@ -1,21 +1,31 @@
 package com.example.todolist.write.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.todolist.R;
 import com.example.todolist.base.BaseActivity;
+import com.example.todolist.model.Item;
 import com.example.todolist.write.WriteContract;
 import com.example.todolist.write.WritePresenter;
 
-public class WriteActivity extends BaseActivity<WriteContract.View, WriteContract.Presenter>
+import butterknife.BindView;
+
+public class WriteActivity
+        extends BaseActivity<WriteContract.View, WriteContract.Presenter>
         implements WriteContract.View {
 
+    @BindView(R.id.btnSave)
+    Button btnSave;
 
-//    WriteContract.Presenter presenter;
+    @BindView(R.id.etTitle)
+    EditText etTitle;
+
+    @BindView(R.id.etContent)
+    EditText etContent;
 
     public WriteContract.Presenter setPresenter() {
         return new WritePresenter();
@@ -26,25 +36,27 @@ public class WriteActivity extends BaseActivity<WriteContract.View, WriteContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-//        presenter = new WritePresenter();
-//        presenter.setView(this);
-
-        findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.save(null);
+                // TODO new Item
+
+                Item item = new Item();
+                item.setTitle(getEtString(etTitle));
+                item.setContent(getEtString(etContent));
+
+                // TODO save item
+                mPresenter.save(item);
             }
         });
+    }
+
+    private String getEtString(EditText et) {
+        return et.getText().toString();
     }
 
     @Override
     public void saveDone() {
         Toast.makeText(this, "Save Done", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        mPresenter.removeView();
-        super.onDestroy();
     }
 }

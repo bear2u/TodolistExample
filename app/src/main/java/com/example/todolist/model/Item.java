@@ -1,7 +1,11 @@
 package com.example.todolist.model;
 
-// DTO
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "item")
 public class Item {
+    @PrimaryKey(autoGenerate = true)
     int no;
     String title;
     String content;
