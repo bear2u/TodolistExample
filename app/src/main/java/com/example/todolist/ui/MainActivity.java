@@ -1,7 +1,9 @@
-package com.example.todolist;
+package com.example.todolist.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.todolist.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this,
+                        WriteActivity.class);
+                startActivity(intent);
             }
         });
     }
