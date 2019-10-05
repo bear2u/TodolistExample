@@ -52,14 +52,12 @@ public class MainActivity
             }
         });
 
+        items = new ArrayList<>();
         initRecyclerView();
-
-        // 데이터 갱신
         mPresenter.fetchItems();
     }
 
     private void initRecyclerView() {
-        items = new ArrayList<>();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
