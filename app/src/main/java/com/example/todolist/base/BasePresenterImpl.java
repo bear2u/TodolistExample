@@ -1,7 +1,7 @@
 package com.example.todolist.base;
 
 public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
-    T view;
+    protected T view;
 
     @Override
     public void setView(T view) {

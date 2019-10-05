@@ -4,17 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.todolist.R;
+import com.example.todolist.base.BaseActivity;
 import com.example.todolist.write.view.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity
+        extends BaseActivity<MainContract.View, MainContract.Presenter>
+        implements MainContract.View
+{
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mPresenter != null)
+            mPresenter.fetchItems();
+    }
+
+    @Override
+    protected MainContract.Presenter setPresenter() {
+        return new MainPresenter();
+    }
+
+    @Override
+    public void fetchItemsFinished() {
+        Log.d(TAG, "fetchItemsFinished");
+        Toast.makeText(this, "fetch Items", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -10,7 +10,8 @@ public class WriteContract {
         void saveDone();
     }
 
-    public interface Presenter extends BasePresenter<View> {
+    public interface Presenter
+            extends BasePresenter<View> {
         // 저장
         void save(Item item);
         // 작성완료 ( <= Repository)
