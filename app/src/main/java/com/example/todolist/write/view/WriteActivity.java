@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.todolist.R;
-import com.example.todolist.base.BaseActivity;
 import com.example.todolist.write.WriteContract;
-import com.example.todolist.write.presenter.WritePresenter;
+import com.example.todolist.write.WritePresenter;
 
 public class WriteActivity extends AppCompatActivity
         implements WriteContract.View {

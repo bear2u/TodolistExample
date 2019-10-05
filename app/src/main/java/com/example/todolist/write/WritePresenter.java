@@ -1,17 +1,21 @@
-package com.example.todolist.write.presenter;
+package com.example.todolist.write;
 
 import com.example.todolist.base.BasePresenterImpl;
+import com.example.todolist.logic.Repository;
+import com.example.todolist.logic.RepositoryImpl;
 import com.example.todolist.model.Item;
-import com.example.todolist.write.WriteContract;
 
 public class WritePresenter
         extends BasePresenterImpl<WriteContract.View>
         implements WriteContract.Presenter {
     WriteContract.View view;
+    Repository repository;
 
     @Override
     public void setView(WriteContract.View view) {
         this.view = view;
+        repository = new RepositoryImpl();
+        repository.setPresenter(this);
     }
 
     @Override
@@ -22,11 +26,11 @@ public class WritePresenter
     @Override
     public void save(Item item) {
         //TODO Repository에 저장
-        view.saveDone();
+        repository.save(item);
     }
 
     @Override
     public void saveDone() {
-        //TODO Repository에서 저장완료
+        view.saveDone();
     }
 }
