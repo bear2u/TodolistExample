@@ -35,7 +35,9 @@ public class MainAdapter
     @Override
     public MainAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_1, parent);
+                .inflate(android.R.layout.simple_list_item_1,
+                        parent,
+                        false);
         return new MainAdapterViewHolder(view);
     }
 

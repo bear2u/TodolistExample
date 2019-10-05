@@ -17,6 +17,7 @@ import com.example.todolist.model.Item;
 import com.example.todolist.write.view.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,6 +32,8 @@ public class MainActivity
 
     @BindView(R.id.mainRecylerView)
     RecyclerView recyclerView;
+
+    List<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,22 +53,24 @@ public class MainActivity
         });
 
         initRecyclerView();
+
+        // 데이터 갱신
+        mPresenter.fetchItems();
     }
 
     private void initRecyclerView() {
+        items = new ArrayList<>();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        mainAdapter = new MainAdapter();
+        mainAdapter = new MainAdapter(items);
         recyclerView.setAdapter(mainAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(mPresenter != null)
-            mPresenter.fetchItems();
     }
 
     @Override
@@ -83,7 +88,11 @@ public class MainActivity
 //            }
 //        });
 
-        runOnUiThread(() -> Toast.makeText(MainActivity.this, "fetch Items " + items.size(), Toast.LENGTH_SHORT).show());
+        runOnUiThread(() -> {
+            this.items.clear();
+            this.items.addAll(items);
+            this.mainAdapter.notifyDataSetChanged();
+        });
     }
 
     @Override
