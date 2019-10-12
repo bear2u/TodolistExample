@@ -7,8 +7,11 @@ import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.RepositoryImpl;
 import com.example.todolist.model.Item;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class WritePresenter
         extends BasePresenterImpl<WriteContract.View>
@@ -35,12 +38,9 @@ public class WritePresenter
                 .doOnSuccess((object)
                         -> Log.d("WritePresenter",
                             Thread.currentThread().getName()))
-                .subscribe(new Consumer() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                     view.saveDone();
-                    }
-                });
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o -> view.saveDone());
     }
 
     @Override

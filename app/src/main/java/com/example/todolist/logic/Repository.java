@@ -10,7 +10,7 @@ import io.reactivex.Single;
 
 public interface Repository<T> {
     void setPresenter(BasePresenter<T> presenter);
-    Single save(Item item);
+    Single<Long> save(Item item);
     void saveDone();
 
     //Fetch

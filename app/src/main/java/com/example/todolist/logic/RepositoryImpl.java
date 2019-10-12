@@ -26,7 +26,7 @@ public class RepositoryImpl<T> implements Repository {
     }
 
     @Override
-    public Single save(Item item) {
+    public Single<Long> save(Item item) {
         return localDataSource.save(item);
     }
 
