@@ -8,6 +8,8 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import io.reactivex.SingleSource;
+import io.reactivex.functions.Function;
 
 public class LocalDataSourceImpl implements DataSource {
     Repository repository;
@@ -40,7 +42,10 @@ public class LocalDataSourceImpl implements DataSource {
 
     @Override
     public Single<Item> fetchItem(int no) {
-        return getItemDao().fetchItem(no);
+        // Item 내 title -> title + "_";
+        return getItemDao().fetchItem(no)
+                .firstOrError();
+
     }
 
     private ItemDao getItemDao() {

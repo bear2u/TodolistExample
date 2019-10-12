@@ -99,9 +99,9 @@ public class MainActivity
     }
 
     @Override
-    public void showDetail(int pos) {
+    public void showDetail(int no) {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("pos", pos);
+        intent.putExtra("no", no);
         startActivity(intent);
     }
 

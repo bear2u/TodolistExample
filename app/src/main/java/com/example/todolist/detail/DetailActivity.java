@@ -29,7 +29,7 @@ public class DetailActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        int no = getIntent().getIntExtra("pos", 0);
+        int no = getIntent().getIntExtra("no", 0);
         mPresenter.fetchItem(no);
     }
 

@@ -6,9 +6,12 @@ import androidx.room.Query;
 
 import com.example.todolist.model.Item;
 
+import org.intellij.lang.annotations.Flow;
+
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 
 @Dao
@@ -20,7 +23,7 @@ public interface ItemDao {
 
     // Update
     @Query("select * from item where no = :no")
-    Single<Item> fetchItem(int no);
+    Flowable<Item> fetchItem(int no);
 
     // Insert
     @Insert

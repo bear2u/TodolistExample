@@ -48,6 +48,10 @@ public class RepositoryImpl<T> implements Repository {
 
     @Override
     public Single<Item> fetchItem(int no) {
-        return localDataSource.fetchItem(no);
+        return localDataSource.fetchItem(no)
+                .map(item -> {
+                    item.setTitle(item.getTitle() + "_");
+                    return item;
+                });
     }
 }

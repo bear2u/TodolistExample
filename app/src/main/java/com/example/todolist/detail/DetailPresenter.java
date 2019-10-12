@@ -39,10 +39,4 @@ public class DetailPresenter
 
         bag.add(da);
     }
-
-    // Item 가져오고 완료 후
-    @Override
-    public void fetchItemDone(Item item) {
-
-    }
 }
