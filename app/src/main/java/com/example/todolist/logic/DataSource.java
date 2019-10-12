@@ -12,4 +12,6 @@ public interface DataSource {
     Single<Long> save(Item item);
 
     Flowable<List<Item>> fetchItems();
+
+    Single<Item> fetchItem(int no);
 }

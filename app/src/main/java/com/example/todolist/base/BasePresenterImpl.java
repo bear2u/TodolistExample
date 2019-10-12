@@ -1,7 +1,10 @@
 package com.example.todolist.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
     protected T view;
+    protected CompositeDisposable bag = new CompositeDisposable();
 
     @Override
     public void setView(T view) {
@@ -11,5 +14,7 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
     @Override
     public void removeView() {
         this.view = null;
+        bag.clear();
+
     }
 }

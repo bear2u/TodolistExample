@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolist.R;
 import com.example.todolist.base.BaseActivity;
+import com.example.todolist.detail.DetailActivity;
 import com.example.todolist.model.Item;
 import com.example.todolist.write.view.WriteActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -99,7 +100,9 @@ public class MainActivity
 
     @Override
     public void showDetail(int pos) {
-        Toast.makeText(this, items.get(pos).getContent(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("pos", pos);
+        startActivity(intent);
     }
 
     @Override

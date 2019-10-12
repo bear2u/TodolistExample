@@ -19,6 +19,8 @@ public interface ItemDao {
     Flowable<List<Item>> fetchItems();
 
     // Update
+    @Query("select * from item where no = :no")
+    Single<Item> fetchItem(int no);
 
     // Insert
     @Insert

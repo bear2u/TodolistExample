@@ -18,6 +18,6 @@ public class MainContract {
         //TODO fetch Items
         void fetchItems();
         void fetchItemsDone(List<Item> items);
-        void showDetail(int pos);
+        void showDetail(int no);
     }
 }

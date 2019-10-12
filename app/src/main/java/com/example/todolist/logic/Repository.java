@@ -16,4 +16,6 @@ public interface Repository<T> {
     //Fetch
     Flowable<List<Item>> fetchItems();
     void fetchItemsDone(List<Item> items);
+
+    Single<Item> fetchItem(int no);
 }

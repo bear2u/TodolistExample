@@ -9,6 +9,8 @@ import java.util.List;
 
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -24,12 +26,14 @@ public class MainPresenter
 
     @Override
     public void fetchItems() {
-        this.repository.fetchItems()
+        Disposable da = this.repository.fetchItems()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((Consumer<List<Item>>) items -> {
                         view.fetchItemsDone(items);
                 });
+
+        bag.add(da);
 
     }
 
@@ -39,7 +43,9 @@ public class MainPresenter
     }
 
     @Override
-    public void showDetail(int pos) {
-        view.showDetail(pos);
+    public void showDetail(int no) {
+        view.showDetail(no);
     }
+
+
 }

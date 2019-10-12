@@ -24,7 +24,11 @@ public class RemoteDataSourceImpl implements DataSource {
 
     @Override
     public Flowable<List<Item>> fetchItems() {
+        return null;
+    }
 
+    @Override
+    public Single<Item> fetchItem(int no) {
         return null;
     }
 }

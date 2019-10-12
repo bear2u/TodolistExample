@@ -53,7 +53,7 @@ public class MainAdapter
         Item item = list.get(position);
         holder.title.setText(item.getTitle());
         holder.view.setOnClickListener(v ->
-                presenter.showDetail(position)
+                presenter.showDetail(item.getNo())
         );
     }
 

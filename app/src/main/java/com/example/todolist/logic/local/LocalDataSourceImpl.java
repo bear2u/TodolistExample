@@ -29,37 +29,21 @@ public class LocalDataSourceImpl implements DataSource {
     @Override
     public Single<Long> save(final Item item) {
         //TODO SAVE
-        return appDatabase.getItemDao().saveItem(item);
-
-//        try {
-//
-//            new AsyncTask<Void, Void, Void>(
-//
-//            ) {
-//                // 백그라운드 동작
-//                @Override
-//                protected Void doInBackground(Void... voids) {
-//                    ItemDao itemDao = appDatabase.getItemDao();
-//                    itemDao.saveItem(item);
-//                    return null;
-//                }
-//
-//                //UI 쓰레드 동작
-//                @Override
-//                protected void onPostExecute(Void aVoid) {
-//                    repository.saveDone();
-//                }
-//            }.execute();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
+        return getItemDao().saveItem(item);
     }
 
     // Fetch Items
     @Override
     public Flowable<List<Item>> fetchItems() {
-        return appDatabase.getItemDao().fetchItems();
+        return getItemDao().fetchItems();
+    }
+
+    @Override
+    public Single<Item> fetchItem(int no) {
+        return getItemDao().fetchItem(no);
+    }
+
+    private ItemDao getItemDao() {
+        return appDatabase.getItemDao();
     }
 }
