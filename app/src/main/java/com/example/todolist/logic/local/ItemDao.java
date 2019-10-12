@@ -8,16 +8,19 @@ import com.example.todolist.model.Item;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
 @Dao
 public interface ItemDao {
     // TODO Query, Insert, Update
     // Query list
-    @Query("select * from item order by no desc")
-    List<Item> fetchItems();
+//    @Query("select * from item order by no desc")
+//    Single<List<Item>> fetchItems();
 
     // Update
 
     // Insert
     @Insert
-    void saveItem(Item item);
+    Single<Long> saveItem(Item item);
 }

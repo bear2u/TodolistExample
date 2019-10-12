@@ -9,6 +9,8 @@ import com.example.todolist.write.WriteContract;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public class RepositoryImpl<T> implements Repository {
     BasePresenter<T> presenter;
     DataSource localDataSource;
@@ -24,8 +26,8 @@ public class RepositoryImpl<T> implements Repository {
     }
 
     @Override
-    public void save(Item item) {
-        localDataSource.save(item);
+    public Single save(Item item) {
+        return localDataSource.save(item);
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.example.todolist.logic.DataSource;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.model.Item;
 
+import io.reactivex.Single;
+
 public class RemoteDataSourceImpl implements DataSource {
 
     @Override
@@ -12,8 +14,9 @@ public class RemoteDataSourceImpl implements DataSource {
     }
 
     @Override
-    public void save(Item item) {
+    public Single<Long> save(Item item) {
 
+        return null;
     }
 
     @Override

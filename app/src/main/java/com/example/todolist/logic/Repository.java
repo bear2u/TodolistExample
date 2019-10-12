@@ -5,9 +5,12 @@ import com.example.todolist.model.Item;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
 public interface Repository<T> {
     void setPresenter(BasePresenter<T> presenter);
-    void save(Item item);
+    Single save(Item item);
     void saveDone();
 
     //Fetch
