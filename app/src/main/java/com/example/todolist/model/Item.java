@@ -10,10 +10,10 @@ public class Item {
     int no;
     String title;
     String content;
-    String regDate;
+//    String regDate;
 
-    @ColumnInfo(name = "done", defaultValue = "0")
-    Boolean isDone = false;
+//    @ColumnInfo(name = "done", defaultValue = "0")
+//    Boolean isDone = false;
 
     public int getNo() {
         return no;
@@ -39,21 +39,21 @@ public class Item {
         this.content = content;
     }
 
-    public String getRegDate() {
-        return regDate;
-    }
+//    public String getRegDate() {
+//        return regDate;
+//    }
+//
+//    public void setRegDate(String regDate) {
+//        this.regDate = regDate;
+//    }
 
-    public void setRegDate(String regDate) {
-        this.regDate = regDate;
-    }
-
-    public Boolean getDone() {
-        return isDone;
-    }
-
-    public void setDone(Boolean done) {
-        isDone = done;
-    }
+//    public Boolean getDone() {
+//        return isDone;
+//    }
+//
+//    public void setDone(Boolean done) {
+//        isDone = done;
+//    }
 
     @Override
     public String toString() {
@@ -61,8 +61,8 @@ public class Item {
                 "no=" + no +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", regDate='" + regDate + '\'' +
-                ", isDone=" + isDone +
+//                ", regDate='" + regDate + '\'' +
+//                ", isDone=" + isDone +
                 '}';
     }
 }

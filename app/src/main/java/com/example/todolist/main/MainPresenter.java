@@ -7,6 +7,11 @@ import com.example.todolist.model.Item;
 
 import java.util.List;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 public class MainPresenter
         extends BasePresenterImpl<MainContract.View>
         implements MainContract.Presenter {
@@ -19,7 +24,12 @@ public class MainPresenter
 
     @Override
     public void fetchItems() {
-        this.repository.fetchItems();
+        this.repository.fetchItems()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((Consumer<List<Item>>) items -> {
+                        view.fetchItemsDone(items);
+                });
 
     }
 

@@ -7,10 +7,7 @@ import com.example.todolist.logic.Repository;
 import com.example.todolist.logic.RepositoryImpl;
 import com.example.todolist.model.Item;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class WritePresenter

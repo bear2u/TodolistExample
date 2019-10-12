@@ -9,6 +9,7 @@ import com.example.todolist.write.WriteContract;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class RepositoryImpl<T> implements Repository {
@@ -36,8 +37,8 @@ public class RepositoryImpl<T> implements Repository {
     }
 
     @Override
-    public void fetchItems() {
-        localDataSource.fetchItems();
+    public Flowable<List<Item>> fetchItems() {
+        return localDataSource.fetchItems();
     }
 
     @Override

@@ -4,6 +4,9 @@ import com.example.todolist.logic.DataSource;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.model.Item;
 
+import java.util.List;
+
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class RemoteDataSourceImpl implements DataSource {
@@ -20,7 +23,8 @@ public class RemoteDataSourceImpl implements DataSource {
     }
 
     @Override
-    public void fetchItems() {
+    public Flowable<List<Item>> fetchItems() {
 
+        return null;
     }
 }

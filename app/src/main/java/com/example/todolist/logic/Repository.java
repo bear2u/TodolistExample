@@ -5,7 +5,7 @@ import com.example.todolist.model.Item;
 
 import java.util.List;
 
-import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public interface Repository<T> {
@@ -14,6 +14,6 @@ public interface Repository<T> {
     void saveDone();
 
     //Fetch
-    void fetchItems();
+    Flowable<List<Item>> fetchItems();
     void fetchItemsDone(List<Item> items);
 }

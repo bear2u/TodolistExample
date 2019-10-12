@@ -4,8 +4,9 @@ import com.example.todolist.logic.DataSource;
 import com.example.todolist.logic.Repository;
 import com.example.todolist.model.Item;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class LocalDataSourceImpl implements DataSource {
@@ -58,12 +59,7 @@ public class LocalDataSourceImpl implements DataSource {
 
     // Fetch Items
     @Override
-    public void fetchItems() {
-        repository.fetchItemsDone(new ArrayList<>());
-//        new Thread(() -> {
-//            List<Item> items = appDatabase.getItemDao().fetchItems();
-//            Log.d("Data", items.size() + "");
-//            repository.fetchItemsDone(items);
-//        }).start();
+    public Flowable<List<Item>> fetchItems() {
+        return appDatabase.getItemDao().fetchItems();
     }
 }
